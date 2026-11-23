@@ -10,6 +10,7 @@ pip install -r requirements.txt
 ## Correr
 python app.py
 
+
 Chamba_Chris/
 ├── app.py                      # Servidor Flask: rutas de la API y de la página
 ├── wsgi.py                     # Punto de entrada para gunicorn (solo en el VPS)
