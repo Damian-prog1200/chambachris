@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulador VLE</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="/static/css/simulador.css">
+</head>
+<body>
+<div class="app">
+<aside>
+ <div class="logo"><i><svg width="30" height="30" viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6h10M17 6v10L8.7 29.4A3 3 0 0 0 11.3 34h17.4a3 3 0 0 0 2.6-4.6L23 16V6"/><path d="M13 26h14M16 21.5h8"/><circle cx="18" cy="29.5" r="1"/><circle cx="23" cy="24" r="1"/></svg></i><div><p class="kicker">ThermoLab</p><h2>Simulador VLE</h2></div></div>
+ <div class="scroll">
+  <section class="sec"><h3><b>01</b>Configuración del sistema</h3>
+   <div class="field"><label for="tipo">Tipo de Diagrama</label><select id="tipo"><option value="T">Diagrama T-xy (P = Cte)</option><option value="P">Diagrama P-xy (T = Cte)</option></select></div>
+   <div class="field"><span class="lbl">Fórmula y Unidades</span><div class="units" id="units"></div></div>
+   <div class="field"><label for="dato" id="datoLbl">Dato de entrada</label><div class="unitbox"><input type="text" inputmode="decimal" id="dato" value="101.325"><span id="datoU">kPa</span></div></div>
+  </section>
+  <section class="sec"><h3><b>02</b>Componentes</h3>
+   <div class="field"><label for="s1">Sustancia 1</label><select id="s1"></select></div><div class="antoine" id="a1"></div>
+   <div class="field"><label for="s2">Sustancia 2</label><select id="s2"></select></div><div class="antoine" id="a2"></div>
+  </section>
+  <section class="sec">
+   <div class="toggle"><div><span class="lbl">Ingresar Moles de la Mezcla</span><p>Define la composición de alimentación</p></div><button class="switch" id="sw" role="switch" aria-checked="true" aria-label="Ingresar moles de la mezcla"></button></div>
+   <div class="two" id="moles"><div class="field"><label for="n1">Moles Sus. 1</label><input type="text" inputmode="decimal" id="n1" value="0,5"></div><div class="field"><label for="n2">Moles Sus. 2</label><input type="text" inputmode="decimal" id="n2" value="0,5"></div></div>
+  </section>
+ </div>
+ <div class="foot"><button class="calc" id="calc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M3 3v18h18M7 15l4-5 3 3 5-6"/></svg>Calcular Gráfica</button></div>
+</aside>
+<main>
+ <div class="top"><div><p class="kicker">Análisis termodinámico / VLE</p><h1>Resultados de la simulación</h1><p class="sub" id="sub"></p></div><div class="badge" id="badge" role="status"></div></div>
+ <section class="card"><div class="head"><div><p class="kicker" id="cKick"></p><h2>Diagrama de Equilibrio</h2></div><div class="legend"><span>Líquido</span><span>Vapor</span></div></div><div id="chart"></div><p class="hover" id="hover"></p></section>
+ <div class="bottom">
+  <section class="card"><div class="head"><div><p class="kicker" id="zKick"></p><h2>Análisis de la Mezcla</h2></div><span class="chip" id="chip"></span></div>
+   <div class="boil"><div>Puntos de Ebullición<small id="boilAt"></small></div><div><small id="bn1"></small><strong id="b1"></strong></div><div><small id="bn2"></small><strong id="b2"></strong></div></div>
+   <div class="points"><div class="pt"><p>● Punto de Burbuja</p><strong id="bub"></strong><span class="u"></span><p class="extra" id="bubX"></p></div><div class="pt"><p>∴ Punto de Rocío</p><strong id="dew"></strong><span class="u"></span><p class="extra" id="dewX"></p></div></div>
+  </section>
+  <section class="card tbl"><div class="head"><div><p class="kicker">Datos calculados</p><h2>Tabla de Iteraciones</h2></div><span class="chip">5 puntos</span></div><div class="wrap"><table><thead><tr><th>x₁ (líq)</th><th>y₁ (vap)</th><th id="thV"></th></tr></thead><tbody id="rows"></tbody></table></div></section>
+ </div>
+</main>
+</div>
+<script src="/static/js/simulador.js"></script>
+</body>
+</html>
